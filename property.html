@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Manager Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f4f6f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            color: #ecf0f1;
+            height: 100vh;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #ecf0f1;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #2c3e50;
+        }
+        .dashboard-widget {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .chart {
+            width: 100%;
+            height: 300px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #777;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-green {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .status-red {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .status-yellow {
+            background-color: #f1c40f;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Manager Dashboard</h2>
+        <ul>
+            <li><a href="#overview" class="active">Overview</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#tenants">Tenants</a></li>
+            <li><a href="#maintenance">Maintenance</a></li>
+            <li><a href="#financials">Financials</a></li>
+            <li><a href="#tasks">Tasks</a></li>
+            <li><a href="#communications">Communications</a></li>
+            <li><a href="#reports">Reports</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Welcome, Property Manager</h1>
+        
+        <div id="overview">
+            <h2>Overview</h2>
+            <div class="grid">
+                <div class="dashboard-widget">
+                    <h3>Properties Summary</h3>
+                    <p>Total Properties: 25</p>
+                    <p>Occupancy Rate: 92%</p>
+                    <p>Properties Needing Attention: 3</p>
+                </div>
+                <div class="dashboard-widget">
+                    <h3>Financial Overview</h3>
+                    <p>Total Rent Collected: $150,000</p>
+                    <p>Outstanding Payments: $5,000</p>
+                    <p>Maintenance Expenses: $10,000</p>
+                </div>
+                <div class="dashboard-widget">
+                    <h3>Task Summary</h3>
+                    <p>Pending Tasks: 15</p>
+                    <p>Overdue Tasks: 3</p>
+                    <p>Completed Tasks: 42</p>
+                </div>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Recent Activities</h3>
+                <ul>
+                    <li>New tenant moved in at 123 Main St, Apt 4B</li>
+                    <li>Maintenance request completed at 456 Elm St, Unit 2A</li>
+                    <li>Rent payment received for 789 Oak Ave</li>
+                    <li>Lease renewal sent to tenant at 321 Pine Rd</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="properties">
+            <h2>Properties</h2>
+            <div class="dashboard-widget">
+                <h3>Property List</h3>
+                <table>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Address</th>
+                        <th>Units</th>
+                        <th>Occupancy</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>Sunset Apartments</td>
+                        <td>123 Main St, Anytown, USA</td>
+                        <td>24/25</td>
+                        <td>96%</td>
+                        <td><span class="status status-green">Good</span></td>
+                        <td><button class="btn">Manage</button></td>
+                    </tr>
+                    <tr>
+                        <td>Oakwood Complex</td>
+                        <td>456 Elm St, Somewhere, USA</td>
+                        <td>18/20</td>
+                        <td>90%</td>
+                        <td><span class="status status-yellow">Attention</span></td>
+                        <td><button class="btn">Manage</button></td>
+                    </tr>
+                </table>
+                <button class="btn">Add New Property</button>
+            </div>
+        </div>
+
+        <div id="tenants">
+            <h2>Tenants</h2>
+            <div class="dashboard-widget">
+                <h3>Tenant Overview</h3>
+                <p>Total Tenants: 200</p>
+                <p>New Move-ins (This Month): 5</p>
+                <p>Upcoming Move-outs: 3</p>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Tenant List</h3>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Property</th>
+                        <th>Unit</th>
+                        <th>Lease End Date</th>
+                        <th>Rent Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Sunset Apartments</td>
+                        <td>Apt 4B</td>
+                        <td>2024-03-31</td>
+                        <td><span class="status status-green">Paid</span></td>
+                        <td><button class="btn">View Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Oakwood Complex</td>
+                        <td>Unit 2A</td>
+                        <td>2023-12-31</td>
+                        <td><span class="status status-red">Overdue</span></td>
+                        <td><button class="btn">View Details</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="maintenance">
+            <h2>Maintenance</h2>
+            <div class="dashboard-widget">
+                <h3>Maintenance Requests</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Property</th>
+                        <th>Unit</th>
+                        <th>Issue</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>2023-08-10</td>
+                        <td>Sunset Apartments</td>
+                        <td>Apt 4B</td>
+                        <td>Leaky Faucet</td>
+                        <td>Low</td>
+                        <td><span class="status status-yellow">Pending</span></td>
+                        <td><button class="btn">Update</button></td>
+                    </tr>
+                    <tr>
+                        <td>2023-08-08</td>
+                        <td>Oakwood Complex</td>
+                        <td>Unit 2A</td>
+                        <td>HVAC Repair</td>
+                        <td>High</td>
+                        <td><span class="status status-green">In Progress</span></td>
+                        <td><button class="btn">Update</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Scheduled Maintenance</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>2023-09-01</td>
+                        <td>All Properties</td>
+                        <td>Quarterly Inspection</td>
+                        <td>Maintenance Team</td>
+                        <td><span class="status status-yellow">Scheduled</span></td>
+                        <td><button class="btn">Edit</button></td>
+                    </tr>
+                </table>
+                <button class="btn">Schedule New Maintenance</button>
+            </div>
+        </div>
+
+        <div id="financials">
+            <h2>Financials</h2>
+            <div class="grid">
+                <div class="dashboard-widget">
+                    <h3>Rent Collection</h3>
+                    <p>Total Collected: $150,000</p>
+                    <p>Outstanding: $5,000</p>
+                    <p>Collection Rate: 97%</p>
+                    <button class="btn">View Details</button>
+                </div>
+                <div class="dashboard-widget">
+                    <h3>Expenses</h3>
+                    <p>Maintenance: $10,000</p>
+                    <p>Utilities: $5,000</p>
+                    <p>Administrative: $3,000</p>
+                    <button class="btn">View Details</button>
+                </div>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Financial Overview</h3>
+                <div class="chart">Monthly Revenue vs Expenses Chart</div>
+            </div>
+        </div>
+
+        <div id="tasks">
+            <h2>Tasks</h2>
+            <div class="dashboard-widget">
+                <h3>Task List</h3>
+                <table>
+                    <tr>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Assigned To</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>Follow up on rent payment</td>
+                        <td>2023-08-15</td>
+                        <td>John Manager</td>
+                        <td>High</td>
+                        <td><span class="status status-yellow">Pending</span></td>
+                        <td><button class="btn">Update</button></td>
+                    </tr>
+                    <tr>
+                        <td>Schedule property inspection</td>
+                        <td>2023-08-20</td>
+                        <td>Jane Supervisor</td>
+                        <td>Medium</td>
+                        <td><span class="status status-green">In Progress</span></td>
+                        <td><button class="btn">Update</button></td>
+                    </tr>
+                </table>
+                <button class="btn">Add New Task</button>
+            </div>
+        </div>
+
+        <div id="communications">
+            <h2>Communications</h2>
+            <div class="grid">
+                <div class="dashboard-widget">
+                    <h3>Recent Messages</h3>
+                    <ul>
+                        <li>Tenant complaint about noise - Sunset Apartments, Apt 3C</li>
+                        <li>Maintenance team update on HVAC repair - Oakwood Complex</li>
+                        <li>Rent reminder sent to all tenants with outstanding balances</li>
+                    </ul>
+                    <button class="btn">View All Messages</button>
+                </div>
+                <div class="dashboard-widget">
+                    <h3>Notifications</h3>
+                    <ul>
+                        <li>3 lease renewals due next month</li>
+                        <li>Property inspection scheduled for Sunset Apartments</li>
+                        <li>New applicant for Oakwood Complex, Unit 5B</li>
+                    </ul>
+                    <button class="btn">View All Notifications</button>
+                </div>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Send Communication</h3>
+                <button class="btn">Email Tenants</button>
+                <button class="btn">Send SMS Notification</button>
+                <button class="btn">Post Property Update</button>
+            </div>
+        </div>
+
+        <div id="reports">
+            <h2>Reports</h2>
+            <div class="dashboard-widget">
+                <h3>Generate Reports</h3>
+                <button class="btn">Occupancy Report</button>
+                <button class="btn">Financial Report</button>
+                <button class="btn">Maintenance Report</button>
+                <button class="btn">Tenant Satisfaction Survey</button>
+            </div>
+            <div class="dashboard-widget">
+                <h3>Recent Reports</h3>
+                <ul>
+                    <li><a href="#">July 2023 Occupancy Report</a></li>
+                    <li><a href="#">Q2 2023 Financial Summary</a></li>
+                    <li><a href="#">Maintenance Efficiency Report - Last 30 Days</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar a').forEach(l => l.classList.remove('active'));
+                // Add active class to clicked link
+                e.target.classList.add('active');
+                // Hide all sections
+                document.querySelectorAll('.main-content > div').forEach(div => div.style.display = 'none');
+                // Show the clicked section
+                const targetId = e.target.getAttribute('href').slice(1);
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+
+        // Show overview by default
+        document.getElementById('overview').style.display = 'block';
+    </script>
+</body>
+</html>
